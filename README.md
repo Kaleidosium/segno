@@ -1,2 +1,2 @@
 # segno
-A music notation programming language that compiles to MIDI, written in Haskell.
+A text-based music notation tool that compiles to MIDI, written in Haskell.
