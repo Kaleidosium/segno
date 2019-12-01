@@ -33,7 +33,7 @@ import Segno.Music
 import System.IO
 
 data GMain =
-  Gmain { tkos :: [[String]] }
+  GMain { tokens :: [[String]] }
   deriving (Show, Eq)
 
 tup f1 f2 f3 =
@@ -55,8 +55,8 @@ thr = tup (\_ trs -> trs) (\_ _ trs -> trs) (\_ _ c trs -> c : trs)
 codecMulti n =
   Midi {fileType = MultiTrack, timeDiv = TicksPerBeat 24, Codec.Midi.tracks = n}
 
-looping (Gmain y) = do
-  allx@(x:xs) <- getLine
+looping (GMain y) = do
+  allX@(x:xs) <- getLine
   case x of
     'q' -> do
       let trs@(tr1, tr2, tr3) = (one y, two y, thr y)
@@ -70,11 +70,11 @@ looping (Gmain y) = do
       let m2 = (foldr (\x a -> (notes 2 x) ++ a) [] tr2)
       let m3 = (foldr (\x a -> (notes 3 x) ++ a) [] tr3)
       exportFile "output.mid" (codecMulti [m1, m2, m3])
-    _ -> readLine y allx
+    _ -> readLine y allX
 
 readLine y x = do
   let f = filter (/= "") (splitOn " " x)
-  looping (Gmain (y ++ [f]))
+  looping (GMain (y ++ [f]))
 
 main :: IO ()
-main = looping (Gmain [])
+main = looping (GMain [])

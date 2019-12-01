@@ -8,7 +8,6 @@ notes c ('>':s) = [(0, Copyright s)]
 notes c "pause" = [(0, NoteOn c 60 0), (24, NoteOff c 60 0)]
 notes c ('#':s) = [(0, Text s)]
 notes c "end" = [(0, TrackEnd)]
-notes c "fin" = [(0, TrackEnd)]
 notes c (a:l:o:d:[]) =
   case d of
     '-' -> fmap halfNote (notes c (a : l : o : []))
