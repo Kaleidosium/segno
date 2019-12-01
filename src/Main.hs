@@ -27,9 +27,9 @@ module Main where
 import Codec.Midi
 import Control.Monad
 import Data.List.Split
-import Segno.Music
 import Data.Typeable
 import Prelude
+import Segno.Music
 import System.IO
 
 data GMain =
