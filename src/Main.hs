@@ -59,15 +59,15 @@ parseInput [a, b]    = return $ Just $ [Channel1 a, Channel2 b]
 parseInput [a, b, c] = return $ Just $ [Channel1 a, Channel2 b, Channel3 c]
 parseInput _         = putStrLn "Error: Unrecognized input!" >> return Nothing
 
-looping revinput = do
+looping revInput = do
   allX <- getLine
   if not (null allX) && head allX == 'q'
-  then dumpToFile (reverse revinput)
+  then dumpToFile (reverse revInput)
   else
     do f <- parseInput $ filter (/= "") (splitOn " " allX)
        case f of
-         Just f ->  looping (f ++ revinput)
-         Nothing -> looping revinput
+         Just f ->  looping (f ++ revInput)
+         Nothing -> looping revInput
 
 main :: IO ()
 main = looping []
