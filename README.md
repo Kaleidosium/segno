@@ -1,5 +1,5 @@
 # segno
-A text-based music notation tool that compiles to MIDI, written in Haskell.
+A text-based music notation tool that parses `.txt` sequence files to MIDI, written in Haskell.
 
 ```
      .;cc:lxxdoc'.
@@ -23,3 +23,6 @@ A text-based music notation tool that compiles to MIDI, written in Haskell.
                .dO0XNWWKdlxkl'
                   .,:cc::,.
 ```
+
+## Examples
+In the `examples` directory.

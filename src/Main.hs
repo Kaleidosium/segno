@@ -64,7 +64,7 @@ looping revInput = do
   if not (null allX) && head allX == 'q'
   then dumpToFile (reverse revInput)
   else
-    do f <- parseInput $ filter (/= "") (splitOn " " allX)
+    do f <- parseInput $ words allX
        case f of
          Just f ->  looping (f ++ revInput)
          Nothing -> looping revInput

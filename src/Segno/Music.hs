@@ -3,7 +3,9 @@ module Segno.Music where
 import Codec.Midi
 import Prelude
 
-notes :: Int -> String -> [(Ticks, Message)]
+type TrackNumber = Int
+
+notes :: TrackNumber -> String -> [(Ticks, Message)]
 notes c ('>':s) = [(0, Copyright s)]
 notes c "pause" = [(0, NoteOn c 60 0), (24, NoteOff c 60 0)]
 notes c ('#':s) = [(0, Text s)]
