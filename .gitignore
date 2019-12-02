@@ -23,3 +23,4 @@ cabal.project.local~
 .DS_Store
 stack.yaml.lock
 todo.md
+.vscode

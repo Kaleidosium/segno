@@ -8,21 +8,21 @@ notes c ('>':s) = [(0, Copyright s)]
 notes c "pause" = [(0, NoteOn c 60 0), (24, NoteOff c 60 0)]
 notes c ('#':s) = [(0, Text s)]
 notes c "end" = [(0, TrackEnd)]
-notes c (a:l:o:d:[]) =
+notes c [a, l, o, d] =
   case d of
-    '-' -> fmap halfNote (notes c (a : l : o : []))
-    '_' -> fmap (halfNote . halfNote) (notes c (a : l : o : []))
-    _   -> notes c (a : l : o : [])
-notes c (x:y:z:[]) =
+    '-' -> fmap halfNote (notes c [a, l, o])
+    '_' -> fmap (halfNote . halfNote) (notes c [a, l, o ])
+    _   -> notes c [a, l, o]
+notes c [x, y, z] =
   case z of
-    '-' -> fmap halfNote (notes c (x : y : []))
-    '_' -> fmap (halfNote . halfNote) (notes c (x : y : []))
+    '-' -> fmap halfNote (notes c [x, y])
+    '_' -> fmap (halfNote . halfNote) (notes c [x, y])
     _ ->
       case x of
-        'l' -> fmap lowNote (notes c (y : z : []))
-        'h' -> fmap highNote (notes c (y : z : []))
-        _   -> notes c (y : z : [])
-notes c (l:o:[]) =
+        'l' -> fmap lowNote (notes c [y, z])
+        'h' -> fmap highNote (notes c [y, z])
+        _   -> notes c [y, z]
+notes c [l, o] =
   let m =
         case o of
           '0' -> 48
