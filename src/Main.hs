@@ -54,9 +54,9 @@ dumpToFile input = do
   let m3 = tr3 >>= notes 3
   exportFile "output.mid" (codecMulti [m1, m2, m3])
 
-parseInput [a]       = return $ Just $ [Channel1 a]
-parseInput [a, b]    = return $ Just $ [Channel1 a, Channel2 b]
-parseInput [a, b, c] = return $ Just $ [Channel1 a, Channel2 b, Channel3 c]
+parseInput [a]       = return $ Just [Channel1 a]
+parseInput [a, b]    = return $ Just [Channel1 a, Channel2 b]
+parseInput [a, b, c] = return $ Just [Channel1 a, Channel2 b, Channel3 c]
 parseInput _         = putStrLn "Error: Unrecognized input!" >> return Nothing
 
 looping revInput = do
