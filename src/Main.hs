@@ -59,16 +59,14 @@ parseInput [a, b]    = return $ Just [Channel1 a, Channel2 b]
 parseInput [a, b, c] = return $ Just [Channel1 a, Channel2 b, Channel3 c]
 parseInput _         = putStrLn "Error: Unrecognized input!" >> return Nothing
 
-looping revInput = do
-  allX <- getLine
-  if not (null allX) && head allX == 'q'
-  then dumpToFile (reverse revInput)
-  else
-    do f <- parseInput $ words allX
-       case f of
-         Just f ->  looping (f ++ revInput)
-         Nothing -> looping revInput
+looping = do
+  getLine >>= \case
+    'q':_ -> return []
+    allX -> do
+      f <- parseInput $ words allX
+      fs <- looping
+      return $ concat f ++ fs
 
 main :: IO ()
-main = looping []
+main = looping >>= dumpToFile
 
