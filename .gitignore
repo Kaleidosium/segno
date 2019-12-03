@@ -25,3 +25,4 @@ stack.yaml.lock
 todo.md
 .vscode
 report.html
+*.bk
