@@ -1,6 +1,7 @@
 module Segno.Music where
 
 import Codec.Midi
+import Control.Applicative
 import Prelude
 
 type TrackNumber = Int
@@ -10,10 +11,10 @@ notes c ('>':s) = [(0, Copyright s)]
 notes c "pause" = [(0, NoteOn c 60 0), (24, NoteOff c 60 0)]
 notes c ('#':s) = [(0, Text s)]
 notes c "end" = [(0, TrackEnd)]
-notes c ('l':s) = fmap lowNote $ notes c s
-notes c ('h':s) = fmap highNote $ notes c s
-notes c [l, o, '-'] = fmap halfNote $ notes c [l, o]
-notes c [l, o, '_'] = fmap (halfNote . halfNote) $ notes c [l, o]
+notes c ('l':s) = lowNote <$> notes c s
+notes c ('h':s) = lowNote <$> notes c s
+notes c [l, o, '-'] = halfNote <$> notes c [l, o]
+notes c [l, o, '_'] = halfNote . halfNote <$> notes c [l, o]
 notes c [l, o] =
   let m = (case o of '0' -> 48; '1' -> 60; '2' -> 72; '3' -> 84; '4' -> 96; _ -> 60)
         + (case l of 'c' -> 0; 'd' -> 2; 'e' -> 4; 'f' -> 5; 'g' -> 7; 'a' -> 9; 'b' -> 11; _ -> 0)

@@ -22,6 +22,8 @@
 --                  .,:cc::,.
 --
 
+{-# LANGUAGE LambdaCase #-}
+
 module Main where
 
 import Codec.Midi
@@ -59,7 +61,7 @@ parseInput [a, b]    = return $ Just [Channel1 a, Channel2 b]
 parseInput [a, b, c] = return $ Just [Channel1 a, Channel2 b, Channel3 c]
 parseInput _         = putStrLn "Error: Unrecognized input!" >> return Nothing
 
-looping = do
+looping =
   getLine >>= \case
     'q':_ -> return []
     allX -> do
