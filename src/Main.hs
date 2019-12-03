@@ -55,15 +55,15 @@ dumpToFile input = do
   putStr "Channel 3> "
   print tr3
   let m1 = either (error "Parse Error!" . show) concat $ mapM (notes 1) tr1
-  let m2 = either (error "Parse Error!" . show) concat $ mapM (notes 1) tr2
-  let m3 = either (error "Parse Error!" . show) concat $ mapM (notes 1) tr3
+  let m2 = either (error "Parse Error!" . show) concat $ mapM (notes 2) tr2
+  let m3 = either (error "Parse Error!" . show) concat $ mapM (notes 3) tr3
   exportFile "output.mid" (codecMulti [m1, m2, m3])
 
 parseInput :: [String] -> IO (Maybe [ChannelData])
 parseInput [a]       = return $ Just [Channel1 a]
 parseInput [a, b]    = return $ Just [Channel1 a, Channel2 b]
 parseInput [a, b, c] = return $ Just [Channel1 a, Channel2 b, Channel3 c]
-parseInput _         = putStrLn "Error: Unrecognized input!" >> return Nothing
+parseInput _         = error "Error: Unrecognized input!" >> return Nothing
 
 looping =
   getLine >>= \case
