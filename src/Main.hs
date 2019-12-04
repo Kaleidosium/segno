@@ -48,7 +48,7 @@ dumpToFile inputs = do
   forM_ inputs $ \(Channel track input) -> do
     putStr $ "Channel " ++ show track ++ "> "
     print input
-  let tracks = either (error "Parse Error!" . show) concat $ forM inputs $ \(Channel track input) -> notes track input
+  let tracks = either (error . show) concat $ forM inputs $ \(Channel track input) -> notes track input
   exportFile "output.mid" (codecMulti [tracks])
 
 parseInput :: [String] -> [ChannelData]
