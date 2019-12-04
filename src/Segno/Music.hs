@@ -62,6 +62,7 @@ sharpNote (d, NoteOff x m v) = (d, NoteOff x (m + 1) v)
 sharpNote m                  = m
 
 halfNote :: (Ticks, Message) -> (Ticks, Message)
+halfNote (d, NoteOn x m v)  = (d, NoteOn x m v)
 halfNote (d, NoteOff x m v) = (d + d, NoteOff x m v)
 halfNote m                  = m
 
