@@ -31,4 +31,5 @@ In the `examples` directory.
 - nicuveo
 - WorldSEnder
 - Gurkenglas
+- miniBill
 - Matojeje
