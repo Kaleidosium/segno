@@ -41,30 +41,9 @@ note c = do
   h <- optionMaybe $ oneOf "-_"
   let m = (case o of '0' -> 48; '1' -> 60; '2' -> 72; '3' -> 84; '4' -> 96; _ -> 60)
         + (case l of 'c' -> 0; 'd' -> 2; 'e' -> 4; 'f' -> 5; 'g' -> 7; 'a' -> 9; 'b' -> 11; _ -> 0)
-  let f1 = case a of
-            Just 'l' -> flatNote
-            Just 'h' -> sharpNote
-            Nothing  -> id
-  let f2 = case h of
-            Just '-' -> halfNote
-            Just '_' -> halfNote . halfNote
-            Nothing  -> id
-  return $ f1 . f2 <$> [(0, NoteOn c m 80), (24, NoteOff c m 0)]
-
-flatNote :: (Ticks, Message) -> (Ticks, Message)
-flatNote (d, NoteOn x m v)  = (d, NoteOn x (m - 1) v)
-flatNote (d, NoteOff x m v) = (d, NoteOff x (m - 1) v)
-flatNote m                  = m
-
-sharpNote :: (Ticks, Message) -> (Ticks, Message)
-sharpNote (d, NoteOn x m v)  = (d, NoteOn x (m + 1) v)
-sharpNote (d, NoteOff x m v) = (d, NoteOff x (m + 1) v)
-sharpNote m                  = m
-
-halfNote :: (Ticks, Message) -> (Ticks, Message)
-halfNote (d, NoteOn x m v)  = (d, NoteOn x m v)
-halfNote (d, NoteOff x m v) = (d + d, NoteOff x m v)
-halfNote m                  = m
+        + (case a of Just 'l' -> -1; Just 'h' -> 1; Nothing -> 0)
+      f =  case h of Just '-' ->  2; Just '_' -> 4; Nothing -> 1
+  return [(0, NoteOn c m 80), (f*24, NoteOff c m 0)]
 
 notes :: TrackNumber -> String -> Either ParseError [(Ticks, Message)]
 notes c = parse (element c) ""
