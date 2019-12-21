@@ -27,7 +27,7 @@ A text-based music notation tool that parses `.txt` sequence files to MIDI, writ
 ## Examples
 In the `examples` directory.
 
-## Special Thanks to:
+## Special Thanks to
 - nicuveo
 - WorldSEnder
 - Gurkenglas
