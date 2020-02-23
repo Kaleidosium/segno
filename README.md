@@ -24,6 +24,9 @@ A text-based music notation tool that parses `.txt` sequence files to MIDI, writ
                   .,:cc::,.
 ```
 
+## Usage
+`cat examples/notes.txt | <binary path goes here>`
+
 ## Examples
 In the `examples` directory.
 

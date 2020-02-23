@@ -3,12 +3,12 @@ cabal-version:       2.4
 
 name:                segno
 version:             0.1.0.0
-synopsis:            A Music Notation Programming language that compiles to MIDI written in Haskell.
-description:         Music Notation Language in Haskell.
+synopsis:            A Music Notation Sequencer that compiles to MIDI written in Haskell.
+description:         Music Notation Sequencer in Haskell.
 bug-reports:         github.com/IamRifki/segno/issues
 license:             MIT
 license-file:        LICENSE.md
-author:              Rifki Kusmana
+author:              Dania Rifki
 maintainer:          iamrifki0@gmail.com
 copyright:           ∞
 category:            Sound

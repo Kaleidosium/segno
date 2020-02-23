@@ -11,9 +11,9 @@ type TrackNumber = Int
 
 element c = choice [ copyright
                    , pause c
-                   , end
                    , note c
                    , text
+                   , end
                    ]
 
 copyright = do
