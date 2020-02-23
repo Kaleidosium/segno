@@ -11,9 +11,9 @@ type TrackNumber = Int
 
 element c = choice [ copyright
                    , pause c
+                   , end
                    , note c
                    , text
-                   , end
                    ]
 
 copyright = do
@@ -26,7 +26,7 @@ pause c = do
   return [(0, NoteOn c 60 0), (24, NoteOff c 60 0)]
 
 end = do
-  string "end"
+  try (string "end")
   return [(0, TrackEnd)]
 
 text = do
