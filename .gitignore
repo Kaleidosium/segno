@@ -3,6 +3,7 @@ dist-*
 cabal-dev
 *.o
 *.hi
+*.hie
 *.chi
 *.chs.h
 *.dyn_o
@@ -20,10 +21,7 @@ cabal.project.local
 cabal.project.local~
 .HTF/
 .ghc.environment.*
-.DS_Store
-stack.yaml.lock
-todo.md
-.vscode
-report.html
-*.bk
+
+# Local Development
 *.mid
+.DS_Store
